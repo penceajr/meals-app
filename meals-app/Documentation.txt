@@ -1,0 +1,13 @@
+﻿1) Search meal by name
+https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
+
+2) All Meals by First letter
+https://www.themealdb.com/api/json/v1/1/search.php?f=a
+
+3) Lookup a single random meal
+https://www.themealdb.com/api/json/v1/1/random.php
+
+
+
+4) Lookup full meal details by id
+https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772

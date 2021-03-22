@@ -1,0 +1,63 @@
+﻿@model meals_app.Models.SearchMealByNameResultsModel
+
+@{
+    ViewData["Title"] = "SearchByName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Search Meal By Name</h1>
+
+<div>
+    <h4>Search by name results:</h4>
+    <hr />
+
+    <span>@Html.DisplayFor(model => model.SearchedTerm)</span>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Meal Picture
+                </th>
+                <th>
+                    Meal Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Region of Meal
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            @foreach (var item in Model.Results)
+            {
+             <tr>
+                 <td style="margin: 0; width: 250px;">
+                     <img style="width: 300px"; src="@Html.DisplayFor(modelItem => item.MealThumb)" />
+                 </td>
+                 <td  style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                     @Html.DisplayFor(modelItem => item.MealName)
+                 </td>
+                 <td   style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                     @Html.DisplayFor(modelItem => item.Category)
+                 </td>
+                 <td   style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                     @Html.DisplayFor(modelItem => item.CountryOfMeal)
+                 </td>
+
+                 <td   style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                     <form asp-action="MealDetails" method="post">
+                         <a asp-action="MealDetails"/>Details<a />
+                     </form>
+                 </td>
+             </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to Search</a>
+</div>

@@ -48,10 +48,8 @@
                      @Html.DisplayFor(modelItem => item.CountryOfMeal)
                  </td>
 
-                 <td   style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
-                     <form asp-action="MealDetails" method="post">
-                         <a asp-action="MealDetails"/>Details<a />
-                     </form>
+                 <td style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                     <a asp-action="Details" asp-route-id="@item.MealId" />Details<a />
                  </td>
              </tr>
             }

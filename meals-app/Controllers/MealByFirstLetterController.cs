@@ -10,25 +10,22 @@ namespace meals_app.Controllers
 {
     public class MealByFirstLetterController : Controller
     {
+        
         public IActionResult Index()
         {
+            MealByFirstLetterModel Letters = new MealByFirstLetterModel();
 
-            List<string> tempList = new List<string>();
-
-            MealByFirstLetterModel Letters = new MealByFirstLetterModel
+            for (int i=65; i <= 90; i++)
             {
-                FirstChar = 'A',
-                LastChar = 'Z'
-            };
+                LetterModel letter = new LetterModel
+                {
+                    Letter = ((char)i).ToString()
+                };
 
-            for (; Letters.FirstChar <= Letters.LastChar; Letters.FirstChar++)
-            {
-                tempList.Add(Letters.FirstChar.ToString());
+                Letters.Letters.Add(letter);
             }
 
-            Letters.Letters.AddRange(tempList);
-
-            return View(Letters.Letters);
+            return View(Letters);
         }
     }
 }

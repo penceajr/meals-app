@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace meals_app.Models
 {
-    public class MealByFirstLetterModel
+    public class SearchMealByLetterResultsModel
     {
         public string Letter { get; set; }
 
-        public List<LetterModel> Letters { get; set; } = new List<LetterModel>();
+        public List<MealApiEntryResponse> Results { get; set; } = new List<MealApiEntryResponse>();
     }
 }

@@ -9,6 +9,8 @@ namespace meals_app.Models
 {
     public class MealApiEntryResponse
     {
+        public string Letter { get; set; }
+
         [JsonProperty("idMeal")]
         public string MealId { get; set; }
 

@@ -7,11 +7,9 @@
 
 <h1>Choose a letter</h1>
 
-        @foreach (var item in Model.Letters)
-        {
-
-        <div>
-            @Html.DisplayFor(modelItem => item.Letter)
-        </div>
-            
-        }
+@foreach (var item in Model.Letters)
+{
+    <a asp-action="SearchMealByLetter" asp-route-id="@item.Letter" />
+    @Html.DisplayFor(modelItem => item.Letter)
+    <a />
+}

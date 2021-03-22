@@ -1,0 +1,61 @@
+﻿@model meals_app.Models.MealApiEntryResponse
+
+@{
+    ViewData["Title"] = "MealDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Meal Name
+                </th>
+                <th>
+                    Preparation Instructions
+                </th>
+                <th>
+                    Ingredients and Measure
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.MealName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PreparationInstructions)
+                </td>
+
+                <td>
+                    <ul>
+                        @for (int i = 1; i <= 20; i++)
+                        {
+                            string ing = "Ingredient" + i;
+                            if (Model.IngredientsAndMeasures.TryGetValue(ing, out var tuple))
+                            {
+                                <li>@tuple.IngredientName : @tuple.Measure</li>
+                            }
+                        }
+                    </ul>
+                </td>
+
+                
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => Model.CountryOfMeal)
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to Letters</a>
+</div>

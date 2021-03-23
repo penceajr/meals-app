@@ -19,19 +19,28 @@
                 <th>
                     Ingredients and Measure
                 </th>
-                <th></th>
+                <th>
+                    Youtube Video
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td style="
+    width: 150px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    padding-top: 10%;
+">
                     @Html.DisplayFor(modelItem => Model.MealName)
                 </td>
-                <td>
+                <td style="width: 650px;">
                     @Html.DisplayFor(modelItem => Model.PreparationInstructions)
                 </td>
 
-                <td>
+                <td style="width: 450px;">
                     <ul>
                         @for (int i = 1; i <= 20; i++)
                         {
@@ -43,13 +52,21 @@
                         }
                     </ul>
                 </td>
-
-                
-
-
                 <td>
-                    @Html.DisplayFor(modelItem => Model.CountryOfMeal)
-                </td>
+                    <input type="text" id="txtUrl" value="@Model.YoutubeVideo" style="width:300px; display:none" />
+                    <input type="button" id="btnPlay" value="Play" />
+                    <hr />
+                    <iframe id="video" width="420" height="315" frameborder="0" style="display:none" allowfullscreen></iframe>
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript">
+        $("body").on("click", "#btnPlay", function () {
+            var url = $("#txtUrl").val();
+            url = url.split('v=')[1];
+            $("#video")[0].src = "//www.youtube.com/embed/" + url;
+            $("#video").show();
+        });
+                    </script>
+               </td>
 
 
             </tr>

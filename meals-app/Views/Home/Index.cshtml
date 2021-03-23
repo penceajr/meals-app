@@ -2,13 +2,132 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <a class="nav-link text-dark" asp-area="" asp-controller="MealByName" asp-action="Index">Search meal by name</a>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <a class="nav-link text-dark" asp-area="" asp-controller="MealByFirstLetter" asp-action="Index">All Meals by First letter</a>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    <a class="nav-link text-dark" asp-area="" asp-controller="RandomMeal" asp-action="Index">Lookup a single random meal</a>
+        .card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 250px;
+            width: 400px;
+            border-radius: 25px;
+            background-color: #ffffff;
+            box-shadow: 10px 0 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
 
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">TBD</a>
+            .card:nth-child(1) {
+                margin-right: 30px;
+            }
 
-</div>
+        body:hover .card {
+            filter: blur(15px);
+            transform: scale(0.9);
+            opactiy: 0.5;
+            transition: 0.9s;
+        }
+
+        body .card:hover {
+            filter: blur(0);
+            transform: scale(1);
+            opactiy: 1;
+            transition: 0.9s;
+        }
+
+        h2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin: 20px 0 0 20px;
+            font-size: 44px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            color: #ffffff;
+            mix-blend-mode: difference;
+        }
+
+        p {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin: 0 20px 60px 20px;
+            font-size: 18px;
+            color: #ffffff;
+            mix-blend-mode: difference;
+        }
+
+        #circle {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            background-color: #000000;
+            margin-top: -330px;
+            margin-left: 200px;
+        }
+
+        #triangle {
+            height: 100%;
+            width: 100%;
+            background-color: #000000;
+            border-radius: 20px;
+            transform: rotate(70deg);
+            margin-top: -430px;
+            margin-left: 200px;
+        }
+
+        .content a {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            margin: 0 20px 20px 0;
+            cursor: pointer;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 28px;
+            padding: 5px 10px 5px 10px;
+            border-radius: 30px;
+            box-shadow: 10px 0 50px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+    <a class="nav-link text-dark" asp-area="" asp-controller="MealByName" asp-action="Index">
+        <div class="card">
+            <div id="circle"></div>
+            <h2>By Name</h2>
+            <p>Search Meal by name...</p>
+            <div class="content">
+            </div>
+        </div>
+    </a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="MealByFirstLetter" asp-action="Index">
+        <div class="card">
+            <div id="triangle"></div>
+            <h2>Letters</h2>
+            <p>All Meals by First letter...</p>
+            <div class="content">
+            </div>
+        </div>
+    </a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="RandomMeal" asp-action="Index">
+        <div class="card">
+            <div id="circle"></div>
+            <h2>Random</h2>
+            <p>Lookup a single random meal...</p>
+            <div class="content">
+            </div>
+        </div>
+    </a>

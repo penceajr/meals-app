@@ -26,8 +26,58 @@ namespace meals_app.Models
         [JsonProperty("strCategory")]
         public string Category { get; set; }
 
+        [JsonProperty("strYoutube")]
+        public string YoutubeVideo { get; set; }
+
         [JsonProperty("strInstructions")]
         public string PreparationInstructions { get; set; }
+
+        private Dictionary<string, (string IngredientName, string Measure)> _ingredientsAndMeasures = null;
+        [JsonIgnore]
+        public Dictionary<string, (string IngredientName, string Measure)> IngredientsAndMeasures
+        {
+            get
+            {
+                if (_ingredientsAndMeasures is null)
+                {
+                    _ingredientsAndMeasures = GetIngredientsWithMeasuresDictionary(this);
+                }
+
+                return _ingredientsAndMeasures;
+            }
+        }
+
+        private static Dictionary<string, (string IngredientName, string Measure)> GetIngredientsWithMeasuresDictionary(MealApiEntryResponse meal)
+        {
+            Type type = typeof(MealApiEntryResponse);
+            var results = new Dictionary<string, (string IngredientName, string Measure)>();
+            for (int i = 0; i < 20; i++)
+            {
+                string ingredientPropertyName = $"Ingredient{i + 1}";
+                string measurePropertyName = $"Measure{i + 1}";
+                string ingredientValue = string.Empty;
+                string measureValue = string.Empty;
+
+                PropertyInfo ingredientProperty = type.GetProperty(ingredientPropertyName);
+                if(ingredientProperty != null)
+                {
+                    ingredientValue = ingredientProperty.GetValue(meal)?.ToString();
+                }
+
+                PropertyInfo measureProperty = type.GetProperty(measurePropertyName);
+                if (measureProperty != null)
+                {
+                    measureValue = measureProperty.GetValue(meal)?.ToString();
+                }
+
+                if (!string.IsNullOrEmpty(ingredientValue) && !string.IsNullOrEmpty(measureValue))
+                {
+                    results.Add(ingredientPropertyName, (ingredientValue, measureValue));
+                }
+            }
+
+            return results;
+        }
 
         [JsonProperty("strIngredient1")]
         public string Ingredient1 { get; set; }
@@ -148,53 +198,5 @@ namespace meals_app.Models
 
         [JsonProperty("strMeasure20")]
         public string Measure20 { get; set; }
-
-
-        private Dictionary<string, (string IngredientName, string Measure)> _ingredientsAndMeasures = null;
-        [JsonIgnore]
-        public Dictionary<string, (string IngredientName, string Measure)> IngredientsAndMeasures
-        {
-            get
-            {
-                if (_ingredientsAndMeasures is null)
-                {
-                    _ingredientsAndMeasures = GetIngredientsWithMeasuresDictionary(this);
-                }
-
-                return _ingredientsAndMeasures;
-            }
-        }
-
-        private static Dictionary<string, (string IngredientName, string Measure)> GetIngredientsWithMeasuresDictionary(MealApiEntryResponse meal)
-        {
-            Type type = typeof(MealApiEntryResponse);
-            var results = new Dictionary<string, (string IngredientName, string Measure)>();
-            for (int i = 0; i < 20; i++)
-            {
-                string ingredientPropertyName = $"Ingredient{i + 1}";
-                string measurePropertyName = $"Measure{i + 1}";
-                string ingredientValue = string.Empty;
-                string measureValue = string.Empty;
-
-                PropertyInfo ingredientProperty = type.GetProperty(ingredientPropertyName);
-                if(ingredientProperty != null)
-                {
-                    ingredientValue = ingredientProperty.GetValue(meal)?.ToString();
-                }
-
-                PropertyInfo measureProperty = type.GetProperty(measurePropertyName);
-                if (measureProperty != null)
-                {
-                    measureValue = measureProperty.GetValue(meal)?.ToString();
-                }
-
-                if (!string.IsNullOrEmpty(ingredientValue) && !string.IsNullOrEmpty(measureValue))
-                {
-                    results.Add(ingredientPropertyName, (ingredientValue, measureValue));
-                }
-            }
-
-            return results;
-        }
     }
 }

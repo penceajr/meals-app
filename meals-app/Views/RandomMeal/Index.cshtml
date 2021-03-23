@@ -1,0 +1,56 @@
+﻿@model meals_app.Models.RandomMeal
+
+@{
+    ViewData["Title"] = "RandomMeal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Random Meal</h1>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Meal Picture
+                </th>
+                <th>
+                    Meal Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Region of Meal
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td style="margin: 0; width: 250px;">
+                        <img style="width: 300px" ; src="@Html.DisplayFor(modelItem => item.MealThumb)" />
+                    </td>
+                    <td style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.MealName)
+                    </td>
+                    <td style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.CountryOfMeal)
+                    </td>
+
+                    <td style="margin: 0;    width: 250px;    padding: 0;    vertical-align: middle;">
+                        <a asp-action="Details" asp-route-id="@item.MealId" />Details<a />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Get another one :)</a>
+</div>

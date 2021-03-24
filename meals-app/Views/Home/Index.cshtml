@@ -34,16 +34,16 @@
             }
 
         body:hover .card {
-            filter: blur(15px);
+            filter: blur(5px);
             transform: scale(0.9);
-            opactiy: 0.5;
+            opacity: 0.5;
             transition: 0.9s;
         }
 
         body .card:hover {
             filter: blur(0);
             transform: scale(1);
-            opactiy: 1;
+            opacity: 1;
             transition: 0.9s;
         }
 
@@ -108,16 +108,16 @@
         <div class="card">
             <div id="circle"></div>
             <h2>By Name</h2>
-            <p>Search Meal by name...</p>
+            <p>Search meal by name...</p>
             <div class="content">
             </div>
         </div>
     </a>
     <a class="nav-link text-dark" asp-area="" asp-controller="MealByFirstLetter" asp-action="Index">
         <div class="card">
-            <div id="triangle"></div>
+            <div id="circle"></div>
             <h2>Letters</h2>
-            <p>All Meals by First letter...</p>
+            <p>All meals by first letter...</p>
             <div class="content">
             </div>
         </div>
